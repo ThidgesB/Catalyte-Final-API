@@ -1,0 +1,655 @@
+{
+	"info": {
+		"_postman_id": "ba91fc87-b430-4415-95cb-4aa4c6b90cb5",
+		"name": "Final-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28096794"
+	},
+	"item": [
+		{
+			"name": "GET All Patients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8085/patients",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Patient by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8085/patients/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Patient by Id - Non-existant ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8085/patients/59",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"59"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Encounters by PatientId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8085/patients/1/encounters",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"1",
+						"encounters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new Patient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"firstName\": \"Hulk\",\r\n\"lastName\": \"Hogan\",\r\n\"ssn\": \"123-45-6789\",\r\n\"email\": \"was@wwf.com\",\r\n\"age\": 66,\r\n\"height\": 79,\r\n\"weight\": 299,\r\n\"insurance\": \"Self-Insured\",\r\n\"gender\": \"Male\",\r\n\"street\": \"8430 W Sunset Blvd\",\r\n\"city\": \"Los Angeles\",\r\n\"state\": \"CA\",\r\n\"postal\": \"90049\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new Patient - Duplicate Email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"firstName\": \"Hulk\",\r\n\"lastName\": \"Hogan\",\r\n\"ssn\": \"123-45-6789\",\r\n\"email\": \"was@wwf.com\",\r\n\"age\": 66,\r\n\"height\": 79,\r\n\"weight\": 299,\r\n\"insurance\": \"Self-Insured\",\r\n\"gender\": \"Male\",\r\n\"street\": \"8430 W Sunset Blvd\",\r\n\"city\": \"Los Angeles\",\r\n\"state\": \"CA\",\r\n\"postal\": \"90049\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Patient - Missing fields",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"lastName\": \"Hogan\",\r\n  \"ssn\": \"123-45-6789\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Patient - Invalid SSN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"Hulk\",\r\n  \"lastName\": \"Hogan\",\r\n  \"ssn\": \"123456789\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Patient - Invalid Gender",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"Hulk\",\r\n  \"lastName\": \"Hogan\",\r\n  \"ssn\": \"123-45-6789\",\r\n  \"email\": \"woh@wwf.com\",\r\n  \"age\": 66,\r\n  \"height\": 79,\r\n  \"weight\": 299,\r\n  \"gender\": \"Alien\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Encounter - Valid",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"patientId\": 1,\r\n  \"notes\": \"new encounter\",\r\n  \"visitCode\": \"N3W 3C3\",\r\n  \"provider\": \"New Hospital\",\r\n  \"billingCode\": \"123.456.789-00\",\r\n  \"icd10\": \"Z99\",\r\n  \"totalCost\": 0.11,\r\n  \"copay\": 0.11,\r\n  \"chiefComplaint\": \"new complaint\",\r\n  \"pulse\": \"80\",\r\n  \"systolic\": \"120\",\r\n  \"diastolic\": \"80\",\r\n  \"date\": \"2020-08-04\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients/1/encounters",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"1",
+						"encounters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Encounter - Invalid Visit Code",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"patientId\": 1,\r\n  \"notes\": \"new encounter\",\r\n  \"visitCode\": \"ABC 123\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients/1/encounters",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"1",
+						"encounters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Encounter - Missing Provider",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"patientId\": 1,\r\n  \"notes\": \"new encounter\",\r\n  \"visitCode\": \"N3W 3C3\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients/1/encounters",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"1",
+						"encounters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Encounter - Invalid Billing Code",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"patientId\": 1,\r\n  \"notes\": \"new encounter\",\r\n  \"visitCode\": \"N3W 3C3\",\r\n  \"provider\": \"New Hospital\",\r\n  \"billingCode\": \"123456789-00\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients/1/encounters",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"1",
+						"encounters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Encounter - Invalid ICD10",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"patientId\": 1,\r\n  \"notes\": \"new encounter\",\r\n  \"visitCode\": \"N3W 3C3\",\r\n  \"provider\": \"New Hospital\",\r\n  \"billingCode\": \"123.456.789-00\",\r\n  \"icd10\": \"ZZ99\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients/1/encounters",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"1",
+						"encounters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Encounter - Negative Total Cost",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"patientId\": 1,\r\n  \"notes\": \"new encounter\",\r\n  \"visitCode\": \"N3W 3C3\",\r\n  \"provider\": \"New Hospital\",\r\n  \"billingCode\": \"123.456.789-00\",\r\n  \"icd10\": \"Z99\",\r\n  \"totalCost\": -0.11\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients/1/encounters",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"1",
+						"encounters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Encounter - Negative CoPay",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"patientId\": 1,\r\n  \"notes\": \"new encounter\",\r\n  \"visitCode\": \"N3W 3C3\",\r\n  \"provider\": \"New Hospital\",\r\n  \"billingCode\": \"123.456.789-00\",\r\n  \"icd10\": \"Z99\",\r\n  \"totalCost\": 0.11,\r\n  \"copay\": -0.11\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients/1/encounters",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"1",
+						"encounters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Encounter - Invalid Pulse",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"patientId\": 1,\r\n  \"notes\": \"new encounter\",\r\n  \"visitCode\": \"N3W 3C3\",\r\n  \"provider\": \"New Hospital\",\r\n  \"billingCode\": \"123.456.789-00\",\r\n  \"icd10\": \"Z99\",\r\n  \"totalCost\": 0.11,\r\n  \"copay\": 0.11,\r\n  \"chiefComplaint\": \"new complaint\",\r\n  \"pulse\": \"-90\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients/1/encounters",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"1",
+						"encounters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Encounter - Invalid Systolic",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"patientId\": 1,\r\n  \"notes\": \"new encounter\",\r\n  \"visitCode\": \"N3W 3C3\",\r\n  \"provider\": \"New Hospital\",\r\n  \"billingCode\": \"123.456.789-00\",\r\n  \"icd10\": \"Z99\",\r\n  \"totalCost\": 0.11,\r\n  \"copay\": 0.11,\r\n  \"chiefComplaint\": \"new complaint\",\r\n  \"systolic\": \"-50\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients/1/encounters",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"1",
+						"encounters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Encounter - Invalid Diastolic",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"patientId\": 1,\r\n  \"notes\": \"new encounter\",\r\n  \"visitCode\": \"N3W 3C3\",\r\n  \"provider\": \"New Hospital\",\r\n  \"billingCode\": \"123.456.789-00\",\r\n  \"icd10\": \"Z99\",\r\n  \"totalCost\": 0.11,\r\n  \"copay\": 0.11,\r\n  \"chiefComplaint\": \"new complaint\",\r\n  \"diastolic\": \"-50\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients/1/encounters",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"1",
+						"encounters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Encounter - Invalid Future Date",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"patientId\": 1,\r\n  \"notes\": \"new encounter\",\r\n  \"visitCode\": \"N3W 3C3\",\r\n  \"provider\": \"New Hospital\",\r\n  \"billingCode\": \"123.456.789-00\",\r\n  \"icd10\": \"Z99\",\r\n  \"totalCost\": 0.11,\r\n  \"copay\": 0.11,\r\n  \"chiefComplaint\": \"new complaint\",\r\n  \"date\": \"2025-08-04\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients/1/encounters",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"1",
+						"encounters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Existing Patient",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"firstName\": \"Hulk\",\r\n\"lastName\": \"Hogan\",\r\n\"ssn\": \"123-45-6789\",\r\n\"email\": \"was@wwf.com\",\r\n\"age\": 66,\r\n\"height\": 79,\r\n\"weight\": 299,\r\n\"insurance\": \"Self-Insured\",\r\n\"gender\": \"Male\",\r\n\"street\": \"8430 W Sunset Blvd\",\r\n\"city\": \"Los Angeles\",\r\n\"state\": \"CA\",\r\n\"postal\": \"90049\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EDIT Encounter",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"notes\": \"Blue blue\",\r\n\"visitCode\": \"N3W 3C4\",\r\n\"provider\": \"Old Hospital\",\r\n\"billingCode\": \"123.456.789-00\",\r\n\"icd10\": \"Z99\",\r\n\"totalCost\": 0.11,\r\n\"copay\": 0.11,\r\n\"chiefComplaint\": \"new complaint\",\r\n\"pulse\": \"\",\r\n\"systolic\": \"\",\r\n\"diastolic\": 20,\r\n\"date\": \"2020-12-13\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/patients/1/encounters/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"1",
+						"encounters",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Patient",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8085/patients/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Patient - Non-existant ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8085/patients/59",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"59"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Patient - Cannot Delete - Active Encounters",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8085/patients/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"patients",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
